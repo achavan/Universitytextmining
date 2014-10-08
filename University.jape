@@ -1,0 +1,69 @@
+Imports:
+{
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
+import java.util.Scanner;
+
+import java.net.URL;
+import java.util.*;
+}
+
+Phase: University
+Input: Token Lookup SpaceToken UniversityPerson
+Options: control = appelt
+ 
+
+Rule: University0
+Priority: 24
+(
+((({Token.category==NNP})+|({Token.category==PN})+|(({Lookup.majorType==location})+))+:univname
+({SpaceToken.kind!="control"})+
+ {Token.string == "University"})
+):univnam1
+-->
+:univnam1.university= {kind = "university", rule = "University0"}
+
+
+Rule: University1
+Priority: 55
+(
+ 
+
+(
+	{Token.string == "University"}
+	({SpaceToken.kind!="control"})+  
+	({Token.string == "of"})
+	({SpaceToken.kind!="control"})+
+ (	({Lookup.majorType==location})*:cityname|({Token.category==NNP})*|{Token})+
+ 
+ ):univname2
+ 
+):orgName 
+-->
+:orgName.university = {kind = "university", rule = "University1"}
+
+Rule: University2
+
+
+
+(
+
+ {Lookup.majorType == univ} 
+ (
+  {Lookup.majorType == univ} 
+ )?
+
+)
+:univ2
+-->
+:univ2.university={kind ="university", rule ="University2"}
+
+
+

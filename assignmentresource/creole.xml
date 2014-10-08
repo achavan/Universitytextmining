@@ -1,0 +1,24 @@
+<!-- creole.xml assignmentresource -->
+<!--  ANISH, 12/2/2014 -->
+
+<!--
+This file just references the JAR file that contains the compiled resource.
+Configuration is contained in the @CreoleResource annotation on 
+assignment.coref.
+-->
+
+<CREOLE-DIRECTORY>
+  
+  
+
+ <CREOLE>
+ 	  <JAR SCAN="true">assignmentresource.jar</JAR>
+ 	<RESOURCE>
+ 	 
+ 	  <CLASS>assignment.coref</CLASS>
+ 	 
+ 	
+ 	
+ 	</RESOURCE>
+ </CREOLE>
+</CREOLE-DIRECTORY>

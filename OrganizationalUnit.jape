@@ -1,0 +1,55 @@
+Imports:
+{
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
+import java.util.Scanner;
+
+
+}
+
+Phase:	OrganizationalUnit
+
+Options: control = appelt
+Input:  Token Lookup
+Rule: OrganizationalUnit1
+
+Priority: 55
+(
+
+
+ {Lookup.majorType ==organization} 
+ (
+  {Lookup.majorType ==organization} 
+ )?
+
+ )
+:OU
+-->
+:OU.OrganizationalUnit={kind="OU",rule="OrganizationalUnit"}
+
+
+Rule: OrganizationalUnit2
+
+Priority: 50
+(
+
+({Token.string == "Faculty"}|{Token.string == "faculty"}|{Token.string == "FACULTY"}|{Token.string == "Department"}|{Token.string == "department"}|{Token.string == "DEPARTMENT"})?
+({Token.string == "of"}|{Token.string == "Of"}|{Token.string == "OF"})?
+{Lookup.majorType == organization} 
+ (
+  {Lookup.majorType ==organization} 
+ )?
+({Token.string == "Faculty"}|{Token.string == "faculty"}|{Token.string == "FACULTY"})?
+ )
+:OU2
+-->
+:OU2.OrganizationalUnit={kind="OU",rule="OrganizationalUnit2"}
+
+

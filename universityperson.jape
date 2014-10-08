@@ -1,0 +1,129 @@
+Phase: UniversityPerson
+Input:   UniversityPosition Person Split
+Options: control = appelt
+ 
+
+
+Rule: UniversityPerson1
+(
+(
+(({Person}):P1
+({UniversityPosition}) : UP1
+({Split})
+
+):condition1|
+(
+
+
+({UniversityPosition}):UP2
+({Person}):P2
+({Split})
+):condition2
+)
+|
+(
+({Person}):P3
+({Split})*
+
+({UniversityPosition}):UP3
+):condition3
+|
+(
+({UniversityPosition}):UP4
+
+({Split})*
+({Person}):P4
+):condition4
+
+):Univpos
+-->
+
+
+:P1
+{		gate.AnnotationSet university1=(gate.AnnotationSet)bindings.get("UP1");
+		gate.AnnotationSet Person1=(gate.AnnotationSet)bindings.get("P1");
+		Annotation UIterator=university1.iterator().next();
+		try{
+				String content = doc.getContent().getContent(UIterator.getStartNode().getOffset(),
+                 UIterator.getEndNode().getOffset()).toString();
+				 gate.FeatureMap features= Factory.newFeatureMap();
+				features.put("string", content);
+				outputAS.add(Person1.firstNode(), Person1.lastNode(), "UniversityPerson",
+				features);
+
+			}
+		catch(InvalidOffsetException ioe)
+		{
+     
+			throw new GateRuntimeException(ioe);
+
+
+		}
+
+},
+:UP2
+{		gate.AnnotationSet Person2=(gate.AnnotationSet)bindings.get("P2");
+		gate.AnnotationSet university1=(gate.AnnotationSet)bindings.get("UP2");
+		Annotation UIterator=university1.iterator().next();
+		try{
+				String content = doc.getContent().getContent(UIterator.getStartNode().getOffset(),
+                 UIterator.getEndNode().getOffset()).toString();
+				 gate.FeatureMap features= Factory.newFeatureMap();
+				features.put("string", content);
+				
+				outputAS.add(Person2.firstNode(), Person2.lastNode(), "UniversityPerson",
+				features);
+			}
+		catch(InvalidOffsetException ioe)
+		{
+     
+			throw new GateRuntimeException(ioe);
+
+
+		}
+
+},
+:UP3
+{		gate.AnnotationSet Person3=(gate.AnnotationSet)bindings.get("P3");
+		gate.AnnotationSet university1=(gate.AnnotationSet)bindings.get("UP3");
+		Annotation UIterator=university1.iterator().next();
+		try{
+				String content = doc.getContent().getContent(UIterator.getStartNode().getOffset(),
+                 UIterator.getEndNode().getOffset()).toString();
+				 gate.FeatureMap features= Factory.newFeatureMap();
+				features.put("string", content);
+				outputAS.add(Person3.firstNode(), Person3.lastNode(), "UniversityPerson",
+				features);
+
+			}
+		catch(InvalidOffsetException ioe)
+		{
+     
+			throw new GateRuntimeException(ioe);
+
+
+		}
+
+},
+:UP4
+{		gate.AnnotationSet Person4=(gate.AnnotationSet)bindings.get("P4");
+		gate.AnnotationSet university1=(gate.AnnotationSet)bindings.get("UP4");
+		Annotation UIterator=university1.iterator().next();
+		try{
+				String content = doc.getContent().getContent(UIterator.getStartNode().getOffset(),
+                 UIterator.getEndNode().getOffset()).toString();
+				 gate.FeatureMap features= Factory.newFeatureMap();
+				features.put("string", content);
+				outputAS.add(Person4.firstNode(), Person4.lastNode(), "UniversityPerson",
+				features);
+
+			}
+		catch(InvalidOffsetException ioe)
+		{
+     
+			throw new GateRuntimeException(ioe);
+
+
+		}
+
+}

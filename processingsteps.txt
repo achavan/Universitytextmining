@@ -1,0 +1,19 @@
+Processing steps 
+
+pleas load annie with default
+
+in appropriate order
+
+then load all the transducer
+in following order
+university
+universityposition
+universityperson
+organization unit
+blongsto
+has_position
+++
+
+for output
+
+please load the assignment resource folder as PR(plugin).it is ant buil file

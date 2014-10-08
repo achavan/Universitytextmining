@@ -1,0 +1,59 @@
+Imports:
+{
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
+import java.util.Scanner;
+
+
+}
+
+Phase:	UniversityPosition
+Input: Lookup Token SpaceToken
+Options: control = appelt
+
+Rule: UniversityPsoition
+(
+
+
+({Token.string=="vice"}|{Token.string=="Vice-"}|{Token.string=="Vice"}|{Lookup.majorType == jobtitle})?
+ {Lookup.majorType == jobtitle} 
+ (
+  {Lookup.majorType == jobtitle} 
+ )*
+
+ )
+:UniversityPsoition
+-->
+:UniversityPsoition.UniversityPosition={kind="UniversityPsoition",rule="UniversityPosition"}
+
+
+ 
+
+
+,:UniversityPsoition
+{
+//try
+// {
+  //  FileWriter fWriter = null;
+    //BufferedWriter Writer = null;
+	  //File f = new File("source.html");
+        //BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+        //bw.write("<html>");
+        //bw.write("<body>");
+        //bw.write("<h1>ShowGeneratedHtml source</h1>");
+		
+        //bw.write("<textarea cols=75 rows=30>");
+		//bw.close();
+	//}
+   //catch(Exception e)
+   //{
+    //e.printStackTrace();
+    //}
+}

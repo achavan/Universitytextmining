@@ -1,0 +1,327 @@
+
+
+Phase:one
+
+Input:university UniversityPerson Split  
+
+Options: control = appelt
+
+
+
+
+
+Rule: getz
+(
+(({UniversityPerson})?
+({Split})*
+({university}):univ
+({Split})*
+({UniversityPerson})?
+{Split}
+)
+|
+
+(({UniversityPerson})?
+({Split})*
+({university}):univ
+({Split})*
+({UniversityPerson})?
+({Split})*
+
+)
+
+
+
+
+):ztag
+-->
+
+:ztag
+{
+Hashtable<Long,Long> h=new Hashtable<Long,Long>();
+	
+gate.AnnotationSet university1=(gate.AnnotationSet)bindings.get("univ");
+Annotation UIterator=university1.iterator().next();
+long number=UIterator.getStartNode().getOffset();
+
+gate.AnnotationSet Person1=(gate.AnnotationSet)bindings.get("ztag");
+Annotation P1Iterator=Person1.iterator().next();
+AnnotationSet temp=Person1.get("UniversityPerson");
+for(Annotation annot: temp)
+{
+		long map = annot.getStartNode().getOffset();
+		long Result=map - number;
+		if (Result < 0)
+		{
+		Result = -Result;
+		}
+		long key = annot.getStartNode().getId();
+		h.put(key, Result);
+System.out.println(Result);
+
+} 
+System.out.println("============================================================");
+
+	long min=0;
+	long x=0;
+	for(Long k:h.keySet())
+	{
+      long temp2= h.get(k);
+      if (min==0)
+      {
+    	  min=temp2;
+		  x=k;
+    	System.out.println("K"+k);
+      }
+      else if(temp2<min)
+      {
+    	  
+    	  min=temp2;
+		      	System.out.println("K"+k);
+			x=k;
+		 //final=k;
+      }
+      }String content="";
+		//gate.AnnotationSet university2=(gate.AnnotationSet)bindings.get("univ");
+		for(Annotation annot: temp)
+		{
+			long compare=annot.getStartNode().getId();
+			if(x==compare)
+			{
+				/*belongs.add(annot);
+				university1.add(annot);
+				gate.FeatureMap newFeatures1= Factory.newFeatureMap();
+		
+				newFeatures1.put("dom",university2);
+				annotations.add(belongs.firstNode(),belongs.lastNode(),"Belongs_to", newFeatures1); */
+				
+				//university1.add(annot);
+				try{
+				content = doc.getContent().getContent(annot.getStartNode().getOffset(),
+                 annot.getEndNode().getOffset()).toString();
+				 gate.FeatureMap features= Factory.newFeatureMap();
+				features.put("string", content);
+				outputAS.add(annot.getStartNode(), annot.getEndNode(), "Belongs_to",
+				features);
+
+			}
+		catch(InvalidOffsetException ioe)
+		{
+     
+			throw new GateRuntimeException(ioe);
+
+
+		}
+				
+				
+			}
+			
+		}
+		
+		
+		
+		
+		//Annotation val=temp.get(x);
+		//Belongs.add(val);
+		gate.FeatureMap newFeatures= Factory.newFeatureMap();
+		String content2="";
+		newFeatures.put("dom",content);
+		try{
+				 content2= doc.getContent().getContent(UIterator.getStartNode().getOffset(),
+                 UIterator.getEndNode().getOffset()).toString();
+				 gate.FeatureMap features= Factory.newFeatureMap();
+				features.put("string", content2);
+			
+
+			}
+		catch(InvalidOffsetException ioe)
+		{
+     
+			throw new GateRuntimeException(ioe);
+
+
+		}
+		newFeatures.put("ran",content2);
+		newFeatures.put("rule","getz"); 
+	
+		annotations.add(university1.firstNode(),university1.lastNode(),"Belongs_to", newFeatures);
+		//outputAS.add(newannot.firstNode(),newannot.lastNode(),"Belongs_to", newFeatures);
+	
+		  
+//System.out.println(min);
+System.out.println("minimum ="+ min);
+
+
+
+
+//gate.AnnotationSet temp2=(gate.AnnotationSet)bindings.get("person");
+//Annotation tempitrator2=temp2.iterator().next();
+
+
+
+
+}
+
+Phase:two
+
+Input:university Person Split  
+
+Options: control = appelt
+
+
+
+
+
+Rule: getz
+(
+(({Person})?
+({Split})*
+({university}):univ
+({Split})*
+({Person})?
+{Split}
+)
+|
+
+(({Person})?
+({Split})*
+({university}):univ
+({Split})*
+({Person})?
+({Split})*
+
+)
+
+
+
+
+):ztag
+-->
+
+:ztag
+{
+Hashtable<Long,Long> h=new Hashtable<Long,Long>();
+	
+gate.AnnotationSet university1=(gate.AnnotationSet)bindings.get("univ");
+Annotation UIterator=university1.iterator().next();
+long number=UIterator.getStartNode().getOffset();
+
+gate.AnnotationSet Person1=(gate.AnnotationSet)bindings.get("ztag");
+Annotation P1Iterator=Person1.iterator().next();
+AnnotationSet temp=Person1.get("Person");
+for(Annotation annot: temp)
+{
+		long map = annot.getStartNode().getOffset();
+		long Result=map - number;
+		if (Result < 0)
+		{
+		Result = -Result;
+		}
+		long key = annot.getStartNode().getId();
+		h.put(key, Result);
+System.out.println(Result);
+
+} 
+System.out.println("============================================================");
+
+	long min=0;
+	long x=0;
+	for(Long k:h.keySet())
+	{
+      long temp2= h.get(k);
+      if (min==0)
+      {
+    	  min=temp2;
+		  x=k;
+    	System.out.println("K"+k);
+      }
+      else if(temp2<min)
+      {
+    	  
+    	  min=temp2;
+		      	System.out.println("K"+k);
+			x=k;
+		 //final=k;
+      }
+      }String content="";
+		//gate.AnnotationSet university2=(gate.AnnotationSet)bindings.get("univ");
+		for(Annotation annot: temp)
+		{
+			long compare=annot.getStartNode().getId();
+			if(x==compare)
+			{
+				/*belongs.add(annot);
+				university1.add(annot);
+				gate.FeatureMap newFeatures1= Factory.newFeatureMap();
+		
+				newFeatures1.put("dom",university2);
+				annotations.add(belongs.firstNode(),belongs.lastNode(),"Belongs_to", newFeatures1); */
+				
+				//university1.add(annot);
+				try{
+				content = doc.getContent().getContent(annot.getStartNode().getOffset(),
+                 annot.getEndNode().getOffset()).toString();
+				 gate.FeatureMap features= Factory.newFeatureMap();
+				features.put("string", content);
+				outputAS.add(annot.getStartNode(), annot.getEndNode(), "Belongs_to",
+				features);
+
+			}
+		catch(InvalidOffsetException ioe)
+		{
+     
+			throw new GateRuntimeException(ioe);
+
+
+		}
+				
+				
+			}
+			
+		}
+		
+		
+		
+		
+		//Annotation val=temp.get(x);
+		//Belongs.add(val);
+		gate.FeatureMap newFeatures= Factory.newFeatureMap();
+		String content2="";
+		newFeatures.put("dom",content);
+		try{
+				 content2= doc.getContent().getContent(UIterator.getStartNode().getOffset(),
+                 UIterator.getEndNode().getOffset()).toString();
+				 gate.FeatureMap features= Factory.newFeatureMap();
+				features.put("string", content2);
+			
+
+			}
+		catch(InvalidOffsetException ioe)
+		{
+     
+			throw new GateRuntimeException(ioe);
+
+
+		}
+		newFeatures.put("ran",content2);
+		newFeatures.put("rule","getz"); 
+	
+		annotations.add(university1.firstNode(),university1.lastNode(),"Belongs_to", newFeatures);
+		//outputAS.add(newannot.firstNode(),newannot.lastNode(),"Belongs_to", newFeatures);
+	
+		  
+//System.out.println(min);
+System.out.println("minimum ="+ min);
+
+
+
+
+//gate.AnnotationSet temp2=(gate.AnnotationSet)bindings.get("person");
+//Annotation tempitrator2=temp2.iterator().next();
+
+
+
+
+}
+
+
